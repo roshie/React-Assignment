@@ -6,29 +6,13 @@ export default function Container(props) {
     var [state, setState] = useState({ items: [] });
 
     const HandleHit = (e) => {
-        // let prevItems = e.dragData.items.slice();
-        // var index = prevItems.indexOf(e.dragData.PoNum);
-        // if (index > -1) {
-        //   prevItems.splice(index, 1);
-        //   console.log('PO dropped: ', e.dragData.PoNum)
-        // }
-        let items = state.items.slice();     
-        items.push(e.dragData.PoNum);
-        setState({ items: items });
-        e.containerElem.style.display = "none"
-
+        let items = state.items.slice(); 
+        if (items.length < 10)  {    
+            items.push(e.dragData.PoNum);
+            setState({ items: items });
+            e.containerElem.style.display = "none"
+        }
     }
-    // const removeData = (e) => {
-    //     var item = e.dragData.PoNum;
-    //     let items = state.items.slice();
-    //     var index = items.indexOf(item);
-    //     if (index > -1) {
-    //         items.splice(index, 1);
-    //         setState({ items: items });
-    //     }
-    //     console.log('dropped', item , items)
-
-    // }
 
     return (
         <DropTarget 
@@ -43,7 +27,7 @@ export default function Container(props) {
                 }}>
                     {state.items.map((item, index) => {
                         return (
-                        <Item key={index} num={item} items={state.items}>
+                        <Item key={index} num={item}>
                             {item}
                         </Item>
                         )

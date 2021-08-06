@@ -9,30 +9,11 @@ function App() {
   var [state, setState] = useState({ items: ['#123454', '#123455', '#123456', '#123457', '#123458', '#123459', '#123459','#123459','#123459','#123459','#123459'] });
 
     const HandleHit = (e) => {
-        // let prevItems = e.dragData.items.slice();
-        // var index = prevItems.indexOf(e.dragData.PoNum);
-        // if (index > -1) {
-        //   prevItems.splice(index, 1);
-        //   console.log('PO dropped: ', e.dragData.PoNum)
-        // }
-
         let items = state.items.slice();   
-        if (items.length < 9)  {
-          items.push(e.dragData.PoNum);
-          setState({ items: items });
-          e.containerElem.style.display = "none"
-        }
-        
-
+        items.push(e.dragData.PoNum);
+        setState({ items: items });
+        e.containerElem.style.display = "none"
     }
-    // const removeData = (e) => {
-    //   let items = state.items.slice();
-    //   var index = items.indexOf(e.dragData.PoNum);
-    //   if (index > -1) {
-    //       items.splice(index, 1);
-    //       setState({ items: items });
-    //       console.log('PO dropped: ', e.dragData.PoNum)
-    //   }
 
     
   return (
@@ -46,7 +27,7 @@ function App() {
                   <div style={{height: '100%'}}>
                     {state.items.map((item, index) => {
                       return (
-                        <PO key={index} num={item} items={state.items}>
+                        <PO key={index} num={item}>
                           {item}
                         </PO>
                       )

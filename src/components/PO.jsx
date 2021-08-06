@@ -2,7 +2,7 @@ import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 
 export default function PO(props) {
     return (
-        <DragDropContainer targetKey="container" className="row" dragData={{PoNum: props.num, items: props.items}}>
+        <DragDropContainer targetKey="container" className="row" dragData={{PoNum: props.num}}>
             <div style={{
                 width: '100px',
                 margin: '5px',
