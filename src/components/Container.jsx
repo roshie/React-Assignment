@@ -13,6 +13,16 @@ export default function Container(props) {
             e.containerElem.style.display = "none"
         }
     }
+    const kill = (uid) => {
+        let items = state.items.slice();
+        const index = items.findIndex((item) => {
+          return item.uid == uid
+        });
+        if (index !== -1) {
+          items.splice(index, 1);
+        }
+        setState({items: items});
+      };
 
     return (
         <DropTarget 
@@ -27,7 +37,7 @@ export default function Container(props) {
                 }}>
                     {state.items.map((item, index) => {
                         return (
-                        <Item key={index} num={item}>
+                        <Item key={index} num={item} kill={kill}>
                             {item}
                         </Item>
                         )

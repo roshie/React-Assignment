@@ -6,6 +6,7 @@ import { DropTarget } from 'react-drag-drop-container';
 
 
 function App() {
+
   var [state, setState] = useState({ items: ['#123454', '#123455', '#123456', '#123457', '#123458', '#123459', '#123459','#123459','#123459','#123459','#123459'] });
 
     const HandleHit = (e) => {
@@ -15,6 +16,16 @@ function App() {
         e.containerElem.style.display = "none"
     }
 
+    const kill = (uid) => {
+      let items = state.items.slice();
+      const index = items.findIndex((item) => {
+        return item.uid == uid
+      });
+      if (index !== -1) {
+        items.splice(index, 1);
+      }
+      setState({items: items});
+    };
     
   return (
     <div className="d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
@@ -27,7 +38,7 @@ function App() {
                   <div style={{height: '100%'}}>
                     {state.items.map((item, index) => {
                       return (
-                        <PO key={index} num={item}>
+                        <PO key={index} num={item} kill={kill}>
                           {item}
                         </PO>
                       )

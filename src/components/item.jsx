@@ -1,9 +1,13 @@
 import { DragDropContainer, DropTarget } from 'react-drag-drop-container';
 
 export default function Item(props) {
+    const deleteMe = () => {
+        console.log(props.num, "gets deleted")
+        props.kill(props.num);
+      };
 
     return (
-        <DragDropContainer targetKey="container" className="row" dragData={{PoNum: props.num}}
+        <DragDropContainer targetKey="container" onDrop={deleteMe} className="row" dragData={{PoNum: props.num}}
          >
             <div style={{
                 width: '50px',
